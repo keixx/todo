@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+
 import TodoForm from './component/TodoForm';
 
-import logo from './logo.svg';
+import header from './img/list.png';
 import './App.css';
 
 class App extends Component {
 
   state = {
-      todo_empty: '',
+      todo: '',
       todos: [],
-      details: {}
+      details: {},
+      ids: 1,
+      status: 'Active',
+      active: 0
     }
 
 
@@ -21,25 +25,53 @@ class App extends Component {
 
     handleSave(e) {
     var obj = {
-      id : this.state.details.id,
-      todos : this.state.todo_empty
+      todos : this.state.todo,
+      ids : this.state.ids,
+      status : this.state.status,
+      active : this.state.active + 1
     }
       this.setState ({
+        input: '',
         todos : this.state.todos.concat(obj),
-        todo_empty : ''
+        todo : '',
+        ids : this.state.ids + 1,
+        active : this.state.active + 1
       })
     }
 
+    handleRemove(task, i){
+      var remove = {
+        active : this.state.active,
+        id : this.state.details.id,
+      }
+      this.setState({
+        active: this.state.active - 1
+      })
+      let todos = this.state.todos.slice();
+      todos.splice(i,1);
+      this.setState({
+        todos
+      });
+    }
 
+
+    handleComplete(e){
+      var complete = {
+        active : this.state.active
+    }
+      this.setState ({
+        active : this.state.active - 1
+      })
+    }
           render() {
+
             return (
               <div className="App">
-                <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <h2 className="App-title">TODOS</h2>
-                </header>
-                <TodoForm 
-                      handleChange={this.handleChange.bind(this,'todo_empty')}
+                <header className="App-header" />
+                <TodoForm className="todoForm"
+                      handleChange={this.handleChange.bind(this,'todo')}
+                      handleRemove = {this.handleRemove.bind(this,'active')}
+                      handleComplete = {this.handleComplete.bind(this,'active')}
                       handleSave={this.handleSave.bind(this)}
                       {...this.state}
                     />
@@ -47,5 +79,6 @@ class App extends Component {
             );
           }
         }
+
 
 export default App;

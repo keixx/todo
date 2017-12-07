@@ -2,27 +2,93 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
-  background-color: #222;
+  background-image: url("./img/list.png");
   height: 120px;
   padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+.form {
+  margin-top: 50px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  padding-left: 20px;
+  font-size: 20px;
+  border-radius: 10px 0px 0px 10px;
+  border: 2px solid #000;
+  box-shadow: 1px 4px 10px #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button {
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 0px;
+  background-color: #000;
   color: white;
+  border: 2px solid #000;
+  border-radius: 0px 10px 10px 0px;
+  cursor: pointer;
+  box-shadow: 1px 4px 10px #fff;
 }
 
-.App-title {
-  font-size: 1.5em;
+.todoForm {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 12px;
 }
 
-.App-intro {
-  font-size: large;
+.button {
+  width: 70px;
+  font-size: 9px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+ul {
+  list-style-type:none;
+  color: #333;
+  background-color: rgba(255,255,255,.5);
+  box-shadow: 1px 4px 10px #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  width: 450px;
+  height: auto;
+  overflow: auto;
+}
+
+.list-box {
+  margin-top: 50px;
+  height: auto;
+  width: 500px;
+}
+
+.list {
+  display: inline-block;
+}
+
+.right {
+  float: right;
+  width: 250px;
+  padding-right: 10px;
+}
+
+.left {
+  float: left;
+  width: 200px;
+  padding-left: 10px;
+}
+
+.tab {
+  font-weight: bold;
+  text-align: left;
 }
