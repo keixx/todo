@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-image: url("./img/list.png");
+  background-image: url("./img/banner.png");
   height: 120px;
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -22,7 +22,7 @@ input[type="text"] {
   border-radius: 10px 0px 0px 10px;
   border: 2px solid #000;
   box-shadow: 1px 4px 10px #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 1px 4px 10px #fff;
 }
 
 button {
@@ -37,6 +37,10 @@ button {
   box-shadow: 1px 4px 10px #fff;
 }
 
+button:hover {
+  background-color: #52d9ff;
+}
+
 .todoForm {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -48,15 +52,17 @@ button {
   font-size: 9px;
   border: none;
   border-radius: 5px;
+  margin-top: 0px;
   margin-right: 5px;
   margin-left: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 ul {
   list-style-type:none;
   color: #333;
   background-color: rgba(255,255,255,.5);
-  box-shadow: 1px 4px 10px #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding-top: 15px;
   padding-bottom: 15px;
   margin-bottom: 15px;
@@ -66,29 +72,46 @@ ul {
   overflow: auto;
 }
 
-.list-box {
-  margin-top: 50px;
-  height: auto;
-  width: 500px;
-}
-
 .list {
   display: inline-block;
 }
 
+.list-box {
+  margin-top: 50px;
+  width: 500px;
+}
+
 .right {
   float: right;
-  width: 250px;
-  padding-right: 10px;
+  width: 190px;
+  margin-left: 20px;
 }
 
 .left {
+  width: 240px;
   float: left;
-  width: 200px;
+  text-align: left;
   padding-left: 10px;
 }
 
 .tab {
   font-weight: bold;
-  text-align: left;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.tab-filter {
+  float: right;
+}
+
+.complete:hover {
+  background-color: #99ff33;
+}
+
+.remove:hover {
+  background-color: #ff9999;
+}
+
+#task-complete {
+  text-decoration: line-through;
 }

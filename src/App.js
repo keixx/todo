@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 
 import TodoForm from './component/TodoForm';
 
-import header from './img/list.png';
 import './App.css';
 
 class App extends Component {
 
   state = {
       todo: '',
-      todos: [],
+      tasks: [],
       details: {},
       ids: 1,
-      status: 'Active',
-      active: 0
+      complete: '',
+      active: 0,
+      filter: 'ALL'
     }
 
 
@@ -25,60 +25,73 @@ class App extends Component {
 
     handleSave(e) {
     var obj = {
-      todos : this.state.todo,
+      tasks : this.state.todo,
       ids : this.state.ids,
-      status : this.state.status,
+      complete : false,
       active : this.state.active + 1
     }
       this.setState ({
         input: '',
-        todos : this.state.todos.concat(obj),
+        tasks : this.state.tasks.concat(obj),
         todo : '',
         ids : this.state.ids + 1,
         active : this.state.active + 1
       })
     }
 
-    handleRemove(task, i){
-      var remove = {
-        active : this.state.active,
-        id : this.state.details.id,
+    handleRemove(data){
+
+      let tasks = this.state.tasks.filter((task) => {
+        console.log(task.ids !== data.ids, task.ids,data.ids,data)
+        return task.ids !== data.ids
+      })
+      console.log('new',tasks)
+      this.setState({
+        active: this.state.active - 1,
+        tasks
+      })
+    }
+
+
+    handleComplete(index){
+    var newList = this.state.tasks.map(todo => {
+      const isSelected = todo.ids  == index.ids
+      console.log('select',isSelected)
+      console.log(todo.ids, index.ids)
+        if(isSelected) todo.complete = !todo.complete 
+        return todo
+      })
+
+        this.setState({
+          active: !this.state.complete ? this.state.active = 0 : this.state.active + 1
+        })
+      console.log(index)
+      } 
+
+
+      updateFilter(filter) {
+          this.setState({
+              filter
+          });
       }
-      this.setState({
-        active: this.state.active - 1
-      })
-      let todos = this.state.todos.slice();
-      todos.splice(i,1);
-      this.setState({
-        todos
-      });
-    }
-
-
-    handleComplete(e){
-      var complete = {
-        active : this.state.active
-    }
-      this.setState ({
-        active : this.state.active - 1
-      })
-    }
-          render() {
-
-            return (
-              <div className="App">
-                <header className="App-header" />
-                <TodoForm className="todoForm"
-                      handleChange={this.handleChange.bind(this,'todo')}
-                      handleRemove = {this.handleRemove.bind(this,'active')}
-                      handleComplete = {this.handleComplete.bind(this,'active')}
-                      handleSave={this.handleSave.bind(this)}
-                      {...this.state}
-                    />
-              </div>
-            );
-          }
-        }
+    
+  render() {
+    console.log(this.state.tasks)
+    return (
+      <div className="App">
+        <header className="App-header" />
+        <TodoForm className="todoForm"
+              handleChange={this.handleChange.bind(this,'todo')}
+              handleRemove = {this.handleRemove.bind(this)}
+              handleComplete = {this.handleComplete.bind(this)}
+              handleSave={this.handleSave.bind(this)}
+              updateFilter={this.updateFilter.bind(this)}
+              {...this.state}
+            />
+      </div>
+    );
+  }
+}
 
 
 export default App;

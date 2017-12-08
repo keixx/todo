@@ -9,8 +9,8 @@ class TodoForm extends Component {
 
 
   render() {
-      const { details, todos, active, ids } = this.props
-      const todolist = todos
+      const { details, tasks, active, ids, item, complete } = this.props
+      const todolist = tasks
 
       .filter((todolist) => {
         console.log ('comments',details, todolist, active)
@@ -30,10 +30,13 @@ class TodoForm extends Component {
             {
               todolist.map((item, index) => {
                 return <ul key={index}>
-                            <div className="list left">{item.todos}</div>
-                            <div className="list right">
-                              <button className="button complete" onClick={this.props.handleComplete}>COMPLETE</button>
-                              <button className="button remove" onClick={this.props.handleRemove}>REMOVE</button>
+                            <div className="left" >
+                              <label style={ {textDecoration: item.complete ? 'line-through' : 'none'}}>
+                              {item.tasks}</label>
+                            </div>
+                            <div className="right">
+                              <button className="button complete" onClick={this.props.handleComplete.bind(this, item)} >COMPLETE</button>
+                              <button className="button remove" onClick={this.props.handleRemove.bind(this, item)}>REMOVE</button>
                             </div>
                         </ul>
               })
