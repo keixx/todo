@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import request from 'superagent';
 
 import '../App.css';
 
@@ -9,13 +8,14 @@ class TodoForm extends Component {
 
 
   render() {
-      const { details, tasks, active, ids, item, complete } = this.props
+      let { details, tasks, active} = this.props
       const todolist = tasks
 
       .filter((todolist) => {
-        console.log ('comments',details, todolist, active)
-        return details.id == todolist.id
+        console.log ('comments',details, todolist)
+        return details.id === todolist.id
       })
+
       console.log('active', active)
 
     return (
@@ -31,7 +31,7 @@ class TodoForm extends Component {
               todolist.map((item, index) => {
                 return <ul key={index}>
                             <div className="left" >
-                              <label style={ {textDecoration: item.complete ? 'line-through' : 'none'}}>
+                              <label style={ {textDecoration: item.complete ? 'red line-through' : 'none'}}>
                               {item.tasks}</label>
                             </div>
                             <div className="right">

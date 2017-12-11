@@ -42,32 +42,45 @@ class App extends Component {
     handleRemove(data){
 
       let tasks = this.state.tasks.filter((task) => {
-        console.log(task.ids !== data.ids, task.ids,data.ids,data)
+        console.log(task.ids !== data.ids, task.ids,data)
         return task.ids !== data.ids
       })
+
       console.log('new',tasks)
       this.setState({
-        active: this.state.active - 1,
+        active: tasks.length - 1,
         tasks
       })
     }
 
 
     handleComplete(index){
-    var newList = this.state.tasks.map(todo => {
-      const isSelected = todo.ids  == index.ids
-      console.log('select',isSelected)
-      console.log(todo.ids, index.ids)
-        if(isSelected) todo.complete = !todo.complete 
-        return todo
+
+      var newList = this.state.tasks.map(todo => {
+        const isSelected = todo.ids  === index.ids
+        console.log(todo.ids, index.ids)
+          if(isSelected) todo.complete = !todo.complete 
+          return todo
       })
 
-        this.setState({
-          active: !this.state.complete ? this.state.active = 0 : this.state.active + 1
-        })
-      console.log(index)
-      } 
+      var count = this.state.tasks.reduce(function(prev, next){
+         let addAmount = next.complete ? 1 : 0
+           prev += addAmount
+           return prev
+      },0)
 
+      var active = this.state.tasks
+
+      console.log("count:",count, active)
+      console.log(index)
+
+        this.setState({
+          count:this.state.count,
+          active:this.state.tasks.length - count
+        })
+
+
+      } 
 
       updateFilter(filter) {
           this.setState({
@@ -77,6 +90,7 @@ class App extends Component {
     
   render() {
     console.log(this.state.tasks)
+
     return (
       <div className="App">
         <header className="App-header" />
