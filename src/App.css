@@ -76,6 +76,30 @@ ul {
   display: inline-block;
 }
 
+.filters {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.filters li{
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 20px
+}
+
+li a:hover {
+    color: white;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  color: black;
+  width: 100px;
+  padding: 10px;
+}
+
 .list-box {
   margin-top: 50px;
   width: 500px;
@@ -94,10 +118,18 @@ ul {
   padding-left: 10px;
 }
 
-.tab {
+.left-tab {
   font-weight: bold;
   float: left;
   margin-bottom: 20px;
+  color: white
+}
+
+.right-tab {
+  font-weight: bold;
+  float: right;
+  margin-bottom: 20px;
+  color: white
 }
 
 .tab-filter {

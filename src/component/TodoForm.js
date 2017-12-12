@@ -8,25 +8,48 @@ class TodoForm extends Component {
 
 
   render() {
-      let { details, tasks, active} = this.props
+      let { details, tasks, count, filter} = this.props
       const todolist = tasks
+
 
       .filter((todolist) => {
         console.log ('comments',details, todolist)
         return details.id === todolist.id
       })
 
-      console.log('active', active)
+      console.log('count:', count)
 
     return (
 
       <center>
         <div className="form">
-          <input type="text" onChange={this.props.handleChange} name="message" rows="3" cols="40" className="note" value={this.props.todo}/>
+          <input type="text" placeholder="What needs to be done?" onChange={this.props.handleChange} className="note" value={this.props.todo}/>
           <button onClick={this.props.handleSave} type="button" className="save">SAVE</button>
         </div>
         <div className="list-box">
-          <div className="tab">{active} tasks left</div>
+          <div className="left-tab"> {count.incomplete} tasks left </div>
+          <div className="right-tab">  {count.complete} completed tasks </div>
+             
+              <ul className="filters">
+                <li>
+                  <a href="#/" onClick={this.props.updateFilter.bind(this, 'ALL')} >
+                      All
+                  </a>
+                </li>
+                {' '}
+                <li>
+                  <a href="#/active" onClick={this.props.updateFilter.bind(this, 'INCOMPLETE')} >
+                      Active
+                  </a>
+                </li>
+                {' '}
+                <li>
+                  <a href="#/completed" onClick={this.props.updateFilter.bind(this, 'COMPLETE')} >
+                      Completed
+                  </a>
+                </li>
+              </ul>
+
             {
               todolist.map((item, index) => {
                 return <ul key={index}>
